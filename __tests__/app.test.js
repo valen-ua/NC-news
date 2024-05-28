@@ -34,7 +34,7 @@ return request(app)
     })
 })
 
-describe.only('GET /api', () => {
+describe('GET /api', () => {
     test('responds with an object describing all the available endpoints on api fetched from the JSON file', () => {
         console.log(endpoints)
        request(app)
