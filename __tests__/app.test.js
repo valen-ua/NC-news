@@ -3,6 +3,7 @@ const request = require('supertest');
 const db = require('../db/connection');
 const seed = require('../db/seeds/seed');
 const testData = require('../db/data/test-data');
+const endpoints = require('../endpoints.json')
 
 beforeEach(() => seed(testData));
 afterAll(() => db.end());
@@ -30,5 +31,17 @@ return request(app)
         .then(({ body }) => {
             expect(body.msg).toBe('Route not found')
         })
+    })
+})
+
+describe.only('GET /api', () => {
+    test('responds with an object describing all the available endpoints on api fetched from the JSON file', () => {
+        console.log(endpoints)
+       request(app)
+       .get('/api')
+       .expect(200)
+       .then((response) => {
+            expect(response.body).toEqual(endpoints)
+       })
     })
 })
