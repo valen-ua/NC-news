@@ -6,3 +6,4 @@ exports.selectTopics = () => {
         return response.rows
     })
 }
+
