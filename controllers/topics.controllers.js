@@ -10,4 +10,6 @@ exports.getTopics = (req, res, next) => {
 
 exports.getEndpoints = (req, res, next) => {
     res.status(200).json(endpoints)
+    
     }
+
