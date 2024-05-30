@@ -154,7 +154,6 @@ describe('GET /api/articles/:article_id/comments', () => {
         .get('/api/articles/9999/comments')
         .expect(404)
         .then(({ body }) => {
-            console.log(body)
             expect(body.msg).toBe('Not Found')
         })
     })
