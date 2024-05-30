@@ -154,8 +154,50 @@ describe('GET /api/articles/:article_id/comments', () => {
         .get('/api/articles/9999/comments')
         .expect(404)
         .then(({ body }) => {
-            console.log(body)
             expect(body.msg).toBe('Not Found')
         })
     })
 })
+
+describe('POST /api/articles/:article_id/comments', () => {
+    test('201: responds with posted comment', () => {
+        const postObj = {
+            author: "butter_bridge",
+            body: "What an interesting article!"
+        }
+        return request(app)
+        .post('/api/articles/4/comments')
+        .send(postObj)
+        .expect(201)
+        .then(({body}) => {
+            expect(body.comment).toEqual({author: "butter_bridge", body: "What an interesting article!"});
+        })
+        })
+    test('404: responds with an error message when article_id is not found', () => {
+        const postObj = 
+        {
+            author: "butter_bridge",
+            body: "What an interesting article!"
+        }
+        return request(app)
+        .post('/api/articles/9999/comments')
+        .send(postObj)
+        .expect(404)
+        .then(({ body }) => {
+            expect(body.msg).toBe('Not Found')
+            })
+        })
+    test('400: responds with an error when required fields are missing', () => {
+        const postObj =
+         {
+            author: "butter_bridge"
+        }
+        return request(app)
+        .post('/api/articles/5/comments')
+        .send(postObj)
+        .expect(400)
+        .then(({body}) => {
+            expect(body.msg).toBe('Bad Request')
+        })
+    })   
+    })
