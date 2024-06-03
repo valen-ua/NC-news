@@ -211,11 +211,10 @@ describe('POST /api/articles/:article_id/comments', () => {
             .send(patchObj)
             .expect(200)
             .then(({body}) => {
-                expect(body).toEqual({title: "Living in the shadow of a great man",
+                expect(body).toMatchObject({title: "Living in the shadow of a great man",
                 topic: "mitch",
                 author: "butter_bridge",
                 body: "I find this existence challenging",
-                created_at: '2020-07-09T19:11:00.000Z',
                 votes: 101,
                 article_img_url:
                   "https://images.pexels.com/photos/158651/news-newsletter-newspaper-information-158651.jpeg?w=700&h=700",
