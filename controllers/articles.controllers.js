@@ -24,3 +24,4 @@ exports.patchArticleVote = (req, res, next) => {
     })
     .catch(next)
 }
+
