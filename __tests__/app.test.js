@@ -251,4 +251,29 @@ describe('POST /api/articles/:article_id/comments', () => {
             })
         })
     })
+describe('DELETE /api/comments/:comment_id', () => {
+    test('status 204: responds with no content', () =>{
+        return request(app)
+        .delete('/api/comments/1')
+        .expect(204)
+        })
+        test('status 404: id not found', () => {
+            return request(app)
+            .delete('/api/comments/9999')
+            .expect(404)
+            .then(({body}) => {
+                expect(body.msg).toBe('Comment not found')
+            })
+        })
+        test('400: responds with bad request message when comment id is in invalid format', () => {
+            return request(app)
+            .delete('/api/comments/gibberish')
+            .expect(400)
+            .then(({body}) => {
+                expect(body.msg).toBe('Bad Request')
+            })
+        })
+    })
+    
+  
    
