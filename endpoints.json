@@ -66,5 +66,10 @@
     "description": "posts a comment to an existing article",
     "exampleResponse": {"comment": {"author": "butter_bridge",
     "body": "What an interesting article!"}
-  }}
+  }},
+  "DELETE /api/comments/:comment_id": {
+    "description": "deletes an existing comment",
+    "exampleResponse": "no content"
+  }
 }
+  
