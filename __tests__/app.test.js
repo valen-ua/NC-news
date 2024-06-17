@@ -51,14 +51,12 @@ describe('GET /api/articles/:article_id', () => {
         .expect(200)
         .then(({body}) => {
             expect(body.article).toMatchObject({
-               author: expect.any(String),
-               title: expect.any(String),
-               article_id: expect.any(Number),
-               body: expect.any(String),
-               topic: expect.any(String),
-               created_at: expect.any(String),
-               votes: expect.any(Number),
-               article_img_url: expect.any(String)
+               author: "rogersop",
+               title: "Student SUES Mitch!",
+               article_id: 4,
+               body: "We all love Mitch and his wonderful, unique typing style. However, the volume of his typing has ALLEGEDLY burst another students eardrums, and they are now suing for damages",
+               topic: "mitch",
+               article_img_url: "https://images.pexels.com/photos/158651/news-newsletter-newspaper-information-158651.jpeg?w=700&h=700"
             })
         })
     })
@@ -134,10 +132,11 @@ describe('GET /api/articles/:article_id/comments', () => {
                 created_at: expect.any(String),
                 author: expect.any(String),
                 body: expect.any(String),
-                article_id: expect.any(Number)
+                article_id: expect.any(Number)   
             })
            })
           expect(body.comments).toBeSorted({descending: 'created at'})
+          expect(body.comments).toHaveLength(2)
         })   
     })
     
@@ -199,7 +198,7 @@ describe('POST /api/articles/:article_id/comments', () => {
         .then(({body}) => {
             expect(body.msg).toBe('Bad Request')
         })
-    })   
+    })  
     })
 
     describe('PATCH /api/articles/:article_id', () => {
